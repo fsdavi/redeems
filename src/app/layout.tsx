@@ -1,14 +1,14 @@
 import "./globals.css";
-import { Roboto } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 
-const roboto = Roboto({
-  weight: ["300", "400", "500", "700"],
+const roboto = Open_Sans({
+  weight: ["400", "500", "600"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-roboto",
+  variable: "--font-open-sans",
 });
 
 export default function RootLayout({
