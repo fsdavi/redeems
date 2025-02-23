@@ -26,7 +26,10 @@ body {
 
 body {
   display: flex;
-  height: 100vh;
+  align-items: center;
+  justify-content: center;
+
+  height: 100svh;
   width: 100vw;
 
   font-family: var(--font-open-sans);
