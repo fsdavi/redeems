@@ -18,6 +18,7 @@ const theme = createTheme({
           borderRadius: "61px",
           padding: "12px 20px",
           boxShadow: "none",
+          textTransform: "none",
           "&:hover": {
             boxShadow: "none",
             backgroundColor: "#3100B6",

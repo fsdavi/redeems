@@ -19,7 +19,8 @@
     "@mui/material-nextjs": "^6.4.3",
     "next": "15.1.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
