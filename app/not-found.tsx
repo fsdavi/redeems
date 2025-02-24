@@ -1,7 +1,16 @@
 "use client";
+import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 import Button from "@/components/Button";
-import { Container, Text, TextsWrapper, Title, Wrapper } from "./not-found.styles";
+
+import {
+  Container,
+  Text,
+  TextsWrapper,
+  Title,
+  Wrapper,
+} from "./not-found.styles";
 
 const DEFAULT_LOGO_PROPS = {
   src: "/default-logo.svg",
@@ -18,6 +27,8 @@ const NOT_FOUND_IMAGE_PROPS = {
 };
 
 export default function NotFound() {
+  const router = useRouter();
+
   return (
     <Wrapper>
       <Image {...DEFAULT_LOGO_PROPS} />
@@ -30,7 +41,7 @@ export default function NotFound() {
           <Text>Parece que você explorou demais, e acabou se perdendo.</Text>
         </TextsWrapper>
       </Container>
-      <Button>
+      <Button onClick={() => router.push('/')}>
         Voltar para a página inicial
       </Button>
     </Wrapper>
