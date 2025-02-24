@@ -15,4 +15,7 @@ export const Default: Story = {
     children: "Button",
     variant: "contained",
   },
+  parameters: {
+    layout: "centered",
+  }
 };

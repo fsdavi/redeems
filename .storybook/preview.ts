@@ -1,14 +1,18 @@
-import type { Preview } from "@storybook/react";
+import "../app/globals.css";
 
-const preview: Preview = {
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
+import { CssBaseline } from "@mui/material";
+import { withThemeFromJSXProvider } from "@storybook/addon-themes";
+
+import Theme from "../app/theme";
+import Provider from "./provider";
+
+export const decorators = [
+  withThemeFromJSXProvider({
+    themes: {
+      default: Theme,
     },
-  },
-};
-
-export default preview;
+    defaultTheme: "default",
+    Provider: Provider,
+    GlobalStyles: CssBaseline,
+  }),
+];

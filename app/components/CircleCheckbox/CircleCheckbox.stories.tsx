@@ -12,6 +12,9 @@ const meta = {
     },
     onChange: { action: "changed" },
   },
+  parameters: {
+    layout: "centered",
+  }
 } satisfies Meta<typeof CircleCheckbox>;
 
 export default meta;

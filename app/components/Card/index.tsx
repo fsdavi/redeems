@@ -1,6 +1,5 @@
 "use client";
 
-import styled from "styled-components";
 import CircleCheckbox, { CircleCheckboxProps } from "../CircleCheckbox";
 import Image, { ImageProps } from "next/image";
 import { CardContainer, CheckboxWrapper, Title } from "./styles";
