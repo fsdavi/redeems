@@ -2,7 +2,7 @@ import { Checkbox } from "@mui/material";
 
 import Image from "next/image";
 
-type CircleCheckboxProps = {
+export type CircleCheckboxProps = {
   checked: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
