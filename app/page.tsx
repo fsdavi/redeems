@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
+import { RedeemPage } from "./types";
 
 const DEFAULT_LOGO_PROPS = {
   src: "/default-logo.svg",
@@ -16,8 +17,10 @@ const DEFAULT_LOGO_PROPS = {
 
 export default function Home() {
   const router = useRouter();
-  const [pages, setPages] = useState([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [pages, setPages] = useState<RedeemPage[]>([]);
+  const buttonDisabled = useMemo(() => {
+    return pages.length < 1 || !pages.find((page) => page.status === "ACTIVE");
+  }, [pages]);
 
   useEffect(() => {
     async function fetchPages() {
@@ -28,8 +31,6 @@ export default function Home() {
         setPages(data);
       } catch (err: any) {
         notFound();
-      } finally {
-        setLoading(false);
       }
     }
     fetchPages();
@@ -49,7 +50,12 @@ export default function Home() {
               Preencha as perguntinhas a seguir para escolher o seu presente! 🎁
             </Text>
           </TextsWrapper>
-          <Button onClick={() => router.push("/redeems")}>Começar!</Button>
+          <Button
+            onClick={() => router.push(`/redeems?id=${pages[0].id}`)}
+            disabled={buttonDisabled}
+          >
+            Começar!
+          </Button>
 
           <Footer />
         </Container>

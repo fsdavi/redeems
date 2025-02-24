@@ -7,11 +7,9 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-        port: "",
-        pathname: "/lobby-images/**",
-        search: "",
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/hiwtbwecx/image/upload/c_limit,h_1024,q_auto,w_1024/v1/store/**',
       },
     ],
   },
