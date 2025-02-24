@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   justify-content: center;
 
   padding: 40px 20px;
+  align-self: flex-start;
 
   @media (min-width: 768px) {
     padding: 100px 140px;

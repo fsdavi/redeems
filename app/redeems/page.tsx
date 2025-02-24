@@ -13,11 +13,7 @@ import { useItems } from "./components/CustomerItemsContext";
 const createIsItemSelected = (selectedItemsIds: string[]) => (itemId: string) =>
   selectedItemsIds.includes(itemId);
 
-export default function Layout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RedeemsPage() {
   const {items, selectedItemsIds, handleSelectItem} = useItems();
   const router = useRouter();
 
@@ -42,7 +38,7 @@ export default function Layout({
 
       <ActionsWrapper>
         <Button variant='outlined' onClick={() => router.push("/")}>Voltar</Button>
-        <Button onClick={() => router.push ("/redeems/form")}>Continuar</Button>
+        <Button onClick={() => router.push ("/redeems/form")} disabled={selectedItemsIds.length < 1}>Continuar</Button>
       </ActionsWrapper>
     </Wrapper>
   );
