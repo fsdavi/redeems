@@ -1,7 +1,6 @@
 :root {
   --white: #ffffff;
   --black: #353535;
-  --foreground: #171717;
   --background: #EFF6FF;
 
   /* Blues */
@@ -33,7 +32,7 @@ body {
   width: 100vw;
 
   font-family: var(--font-open-sans);
-  color: var(--foreground);
+  color: var(--black);
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

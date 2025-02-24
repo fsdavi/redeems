@@ -25,3 +25,13 @@ export const body = css`
     font-size: 20px;
   }
 `
+
+export const bodySmall = css`
+  color: var(--black);
+  font-weight: 400;
+  font-size: 12px;
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+`
