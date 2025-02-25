@@ -40,7 +40,7 @@ const Template: StoryFn<CardStoryProps> = (args) => {
         checked={checked}
         onChange={(e) => setChecked(e.target.checked)}
       />
-      <Card.Image src={args.src} alt={args.alt} />
+      <Card.Image src={args.src ?? '/product-fallback-image'} alt={args.alt} />
       <Card.Title>{args.title}</Card.Title>
     </Card>
   );
