@@ -1,43 +1,61 @@
 import CpfCnpjTextField from "@/components/CpfCnpjTextfield";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
 import { TextField } from "@mui/material";
-import { UseFormReturn } from "react-hook-form";
+import { Controller, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 import styled from "styled-components";
+import { Container, Wrapper } from "./styles";
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 32px; 
-`
+function AddresseFormSection({
+  form,
+}: {
+  form: UseFormReturn<z.infer<typeof ADDRESSE_SCHEMA>>;
+}) {
+  const {
+    register,
+    formState: { errors },
+    control
+  } = form;
 
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 32px;
-  }
-`
-
-function AddresseFormSection({ form }: { form: UseFormReturn<z.infer<typeof ADDRESSE_SCHEMA>> }) {
   return (
     <Wrapper>
-      <TextField label="Nome completo" required variant="standard" fullWidth/>
+      <TextField
+        label="Nome completo"
+        required
+        variant="standard"
+        fullWidth
+        {...register("redeemer_name")}
+        error={Boolean(errors.redeemer_name)}
+        helperText={errors.redeemer_name?.message}
+      />
       <Container>
-        <TextField label="E-mail" required variant="standard" fullWidth/>
-        <CpfCnpjTextField 
-          label="CPF ou CNPJ"
+      <Controller
+          control={control}
+          name="redeemer_document_number"
+          render={({ field, fieldState: { error } }) => (
+            <CpfCnpjTextField
+              label="CPF ou CNPJ"
+              required
+              value={field.value || ""}
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              error={Boolean(error)}
+              helperText={error ? error.message : ""}
+            />
+          )}
+        />
+        <TextField
+          label="E-mail"
           required
-          value={form.getValues("redeemer_document_number")}
-          onChange={(e) => form.setValue("redeemer_document_number", e.target.value)}
-          error={!!form.formState.errors.redeemer_document_number}
-          helperText={form.formState.errors.redeemer_document_number?.message}
+          variant="standard"
+          fullWidth
+          {...register("redeemer_email")}
+          error={Boolean(errors.redeemer_email)}
+          helperText={errors.redeemer_email?.message}
         />
       </Container>
     </Wrapper>
-  )
+  );
 }
 
 export default AddresseFormSection;
