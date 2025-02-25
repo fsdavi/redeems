@@ -11,11 +11,13 @@ import {
 import { notFound, useSearchParams } from "next/navigation";
 import { Item } from "@/types";
 
-interface ItemsContextProps {
+type ItemsContextProps = {
   items: Item[];
   selectedItems: Item[];
   selectedItemsIds: string[];
+  loading: boolean;
   handleSelectItem: (itemId: string) => void;
+  pageRedeemId: string | null;
 }
 
 const ItemsContext = createContext<ItemsContextProps | undefined>(undefined);
@@ -26,6 +28,9 @@ export const ItemsProvider = ({ children }: { children: ReactNode }) => {
 
   const [items, setItems] = useState<Item[]>([]);
   const [selectedItemsIds, setSelectedItemsIds] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [pageRedeemId, setPageRedeemId] = useState<string | null>(id);
+
   const selectedItems = useMemo(
     () =>
       items.filter((item) =>
@@ -43,13 +48,15 @@ export const ItemsProvider = ({ children }: { children: ReactNode }) => {
       try {
         const res = await fetch(`/api/redeem_pages/${id}`);
         const data = await res.json();
-        setItems(data.items);
+        setItems(data.items.filter((item: Item) => item.optional));
+        setLoading(false);
+        setPageRedeemId((prev) => id ?? prev);
       } catch (err: any) {
         notFound();
       }
     }
     fetchItems();
-  }, [id]);
+  }, []);
 
   const handleSelectItem = (itemId: string) => {
     setSelectedItemsIds((prev) => {
@@ -62,7 +69,14 @@ export const ItemsProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ItemsContext.Provider
-      value={{ items, selectedItemsIds, handleSelectItem, selectedItems }}
+      value={{
+        items,
+        selectedItemsIds,
+        handleSelectItem,
+        selectedItems,
+        loading,
+        pageRedeemId
+      }}
     >
       {children}
     </ItemsContext.Provider>
