@@ -22,8 +22,8 @@ const DEFAULT_LOGO_PROPS = {
 const NOT_FOUND_IMAGE_PROPS = {
   src: "/not-found-image.svg",
   alt: "404 - Página não encontrada",
-  width: 500,
-  height: 200,
+  fill: true,
+  sizes: "100%"
 };
 
 export default function NotFound() {
@@ -34,7 +34,7 @@ export default function NotFound() {
       <Image {...DEFAULT_LOGO_PROPS} />
 
       <Container>
-        <Image {...NOT_FOUND_IMAGE_PROPS} />
+        <Image {...NOT_FOUND_IMAGE_PROPS}/>
 
         <TextsWrapper>
           <Title>Oops! Página não encontrada.</Title>

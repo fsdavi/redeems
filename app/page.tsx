@@ -1,12 +1,10 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { Container, Text, TextsWrapper, Title, Wrapper } from "./page.styles";
-import { Suspense, useEffect, useMemo, useState } from "react";
-import { notFound } from "next/navigation";
+import { Container, PagesWrapper, Text, TextsWrapper, Title, Wrapper } from "./page.styles";
+import { Suspense } from "react";
 import Image from "next/image";
-import Button from "@/components/Button";
 import Footer from "@/components/Footer";
-import { RedeemPage } from "./types";
+import { useRedeemPages } from "./hooks/useRedeemPages";
+import PageCard from "@/components/PageCard";
 
 const DEFAULT_LOGO_PROPS = {
   src: "/default-logo.svg",
@@ -16,11 +14,7 @@ const DEFAULT_LOGO_PROPS = {
 };
 
 export default function Home() {
-  const router = useRouter();
-  const [pages, setPages] = useState<RedeemPage[]>([]);
-  const buttonDisabled = useMemo(() => {
-    return pages.length < 1 || !pages.find((page) => page.status === "ACTIVE");
-  }, [pages]);
+  const redeemPages = useRedeemPages();
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -29,20 +23,21 @@ export default function Home() {
           <Image {...DEFAULT_LOGO_PROPS} />
 
           <TextsWrapper>
-            <Title>Bem vindo!</Title>
+            <Title>Bem vindo aos resgates!</Title>
             <Text>
-              Estamos muito felizes em ter você em nossa equipe!
-              <br />
-              Preencha as perguntinhas a seguir para escolher o seu presente! 🎁
+              Por favor, selecione para qual resgate deseja ser redirecionado!
             </Text>
           </TextsWrapper>
-          <Button
-            onClick={() => router.push(`/redeems?id=${pages[0].id}`)}
-            disabled={buttonDisabled}
-          >
-            Começar!
-          </Button>
-
+          <PagesWrapper>
+            {redeemPages.map((page) => (
+              <PageCard
+                key={page.id}
+                id={page.id}
+                title={page.title}
+                status={page.status}
+              />
+            ))}
+          </PagesWrapper>
           <Footer />
         </Container>
       </Wrapper>

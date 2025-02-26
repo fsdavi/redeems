@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 import { body, subtitle } from "./utils/typographies";
+import Image from "next/image";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -19,6 +20,10 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  > img {
+    position: relative !important;
+  }
 `;
 
 export const TextsWrapper = styled.div`
@@ -26,6 +31,7 @@ export const TextsWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  padding: 0px 16px;
 `
 
 export const Title = styled.h1`

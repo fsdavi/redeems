@@ -49,3 +49,10 @@ export const Title = styled.h1`
 export const Text = styled.p`
   ${body}
 `
+
+export const PagesWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+`
