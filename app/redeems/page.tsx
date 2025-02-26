@@ -5,14 +5,14 @@ import { Wrapper, Title, ActionsWrapper } from "./page.styles";
 import Card from "@/components/Card";
 import { ItemsWrapper } from "./page.styles";
 import Button from "@/components/Button";
-import { useItems } from "./components/CustomerItemsContext";
+import { useItems } from "./contexts/CustomerItemsContext";
 import ItemsSkeleton from "./components/ItemsSkeleton";
 
 const createIsItemSelected = (selectedItemsIds: string[]) => (itemId: string) =>
   selectedItemsIds.includes(itemId);
 
 export default function RedeemsPage() {
-  const { items, selectedItemsIds, handleSelectItem, loading} = useItems();
+  const { items, selectedItemsIds, handleSelectItem, loading } = useItems();
   const router = useRouter();
 
   const isItemSelected = createIsItemSelected(selectedItemsIds);
@@ -23,7 +23,7 @@ export default function RedeemsPage() {
 
       <ItemsWrapper>
         {loading ? (
-          <ItemsSkeleton numberOfItems={6}/>
+          <ItemsSkeleton numberOfItems={6} />
         ) : (
           <>
             {items.map((item) => (

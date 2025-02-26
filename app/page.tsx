@@ -22,20 +22,6 @@ export default function Home() {
     return pages.length < 1 || !pages.find((page) => page.status === "ACTIVE");
   }, [pages]);
 
-  useEffect(() => {
-    async function fetchPages() {
-      try {
-        const res = await fetch("/api/redeem_pages");
-
-        const data = await res.json();
-        setPages(data);
-      } catch (err: any) {
-        notFound();
-      }
-    }
-    fetchPages();
-  }, []);
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Wrapper>

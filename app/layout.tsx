@@ -4,13 +4,15 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import StyledComponentsRegistry from "./lib/registry";
 import { openSans } from "@/lib/fonts";
+import { fetchRedeemPages } from "@/lib/fetchRedeemsPages";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+  const redeemPagesData = await fetchRedeemPages();
+
   return (
     <html lang="en">
       <body className={openSans.variable}>

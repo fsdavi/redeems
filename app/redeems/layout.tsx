@@ -1,5 +1,5 @@
 "use client";
-import { ItemsProvider } from "./components/CustomerItemsContext";
+import { ItemsProvider } from "./contexts/CustomerItemsContext";
 import { Container, Wrapper } from "./styles";
 import Footer from "@/components/Footer";
 

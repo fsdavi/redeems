@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useItems } from "../components/CustomerItemsContext";
+import { useItems } from "../contexts/CustomerItemsContext";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";

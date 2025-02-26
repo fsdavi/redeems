@@ -1,14 +1,20 @@
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }): Promise<Response> {
+export async function GET(
+  _: Request,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<Response> {
   try {
     const pageId = (await params).id;
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/redeem_pages/${pageId}`, {
-      cache: "force-cache",
-      headers: {
-        Authorization: `Basic ${process.env.NEXT_PUBLIC_API_KEY}`,
-      },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/redeem_pages/${pageId}`,
+      {
+        cache: "force-cache",
+        headers: {
+          Authorization: `Basic ${process.env.NEXT_PUBLIC_API_KEY}`,
+        },
+      }
+    );
 
     if (!res.ok) {
       return NextResponse.json(
