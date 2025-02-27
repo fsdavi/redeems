@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { body, title } from '@/utils/typographies'
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,33 +7,28 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100svh;
+  max-height: 600px;
 
-  padding: 40px 20px;
   align-self: flex-start;
-  
-  @media (min-width: 768px) {
-    padding: 100px 140px;
-  }
 `
 
-export const Container = styled.div`
+export const PageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 80px;
+  gap: 40px;
 
-  background-color: var(--white);
-  border-radius: 20px;
-
-  padding: 64px 20px 20px;
+  height: 100%;
+  max-height: 600px;
 `
 
 export const TextsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 
   text-align: center;
 `

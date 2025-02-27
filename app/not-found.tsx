@@ -34,16 +34,16 @@ export default function NotFound() {
       <Image {...DEFAULT_LOGO_PROPS} />
 
       <Container>
-        <Image {...NOT_FOUND_IMAGE_PROPS}/>
+        <Image {...NOT_FOUND_IMAGE_PROPS} />
 
         <TextsWrapper>
           <Title>Oops! Página não encontrada.</Title>
           <Text>Parece que você explorou demais, e acabou se perdendo.</Text>
         </TextsWrapper>
+        <Button onClick={() => router.push("/")}>
+          Voltar para a página inicial
+        </Button>
       </Container>
-      <Button onClick={() => router.push('/')}>
-        Voltar para a página inicial
-      </Button>
     </Wrapper>
   );
 }

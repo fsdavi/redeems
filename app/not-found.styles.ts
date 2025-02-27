@@ -1,9 +1,8 @@
 
 import styled from "styled-components";
 import { body, subtitle } from "./utils/typographies";
-import Image from "next/image";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.body`
   display: flex;
   flex: 1;
   height: 100%;
@@ -22,7 +21,10 @@ export const Container = styled.div`
   gap: 20px;
 
   > img {
+    /* Need !important to override absolute position used by the fill option on Image component */
     position: relative !important;
+    max-width: 500px;
+    max-height: 200px;
   }
 `;
 

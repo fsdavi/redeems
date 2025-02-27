@@ -17,20 +17,8 @@ export const Title = styled.h1`
 `
 
 export const ItemsWrapper = styled.div`
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr;
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-    flex-direction: row;
-  }
-`
-
-export const ActionsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1;
-  width: 100%;
+  flex-wrap: wrap;
+  
+  gap: 20px;
 `

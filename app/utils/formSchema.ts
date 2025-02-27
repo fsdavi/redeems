@@ -43,13 +43,13 @@ export const ADDRESSE_SCHEMA = z.object({
   redeemer_phone: z.string().nullable(),
   items: z.array(
     z.object({
-      customer_product_id: z.number(),
+      customer_product_id: z.string(),
       size_name: z.string().nullable(),
     })
   ),
   extra_question_responses: z.array(
     z.object({ 
-      extra_question_id: z.number(),
+      extra_question_id: z.string(),
       answer: z.string(),
     })
   ).nullable(),

@@ -1,21 +1,24 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Wrapper, Title, ActionsWrapper } from "./page.styles";
+import { useRedeemForm } from "@/redeems/contexts/RedeemFormContext";
+
 import Card from "@/components/Card";
-import { ItemsWrapper } from "./page.styles";
 import Button from "@/components/Button";
-import { useItems } from "./contexts/CustomerItemsContext";
-import ItemsSkeleton from "./components/ItemsSkeleton";
+import ItemsSkeleton from "@/redeems/components/ItemsSkeleton";
+import { Wrapper, Title, ItemsWrapper } from "./page.styles";
+import { ActionsWrapper } from "../styles";
+import { useCallback } from "react";
+
 
 const createIsItemSelected = (selectedItemsIds: string[]) => (itemId: string) =>
   selectedItemsIds.includes(itemId);
 
 export default function RedeemsPage() {
-  const { items, selectedItemsIds, handleSelectItem, loading } = useItems();
+  const { items, handleSelectItem, selectedItemsIds, loading, pageId } = useRedeemForm();
   const router = useRouter();
 
-  const isItemSelected = createIsItemSelected(selectedItemsIds);
+  const isItemSelected = useCallback(createIsItemSelected(selectedItemsIds), [selectedItemsIds]);
 
   return (
     <Wrapper>
@@ -41,11 +44,11 @@ export default function RedeemsPage() {
       </ItemsWrapper>
 
       <ActionsWrapper>
-        <Button variant="outlined" onClick={() => router.push("/")}>
+        <Button variant="outlined" onClick={() => router.push(`/redeems/${pageId}`)}>
           Voltar
         </Button>
         <Button
-          onClick={() => router.push("/redeems/form")}
+          onClick={() => router.push(`/redeems/${pageId}/form`)}
           disabled={selectedItemsIds.length < 1}
         >
           Continuar

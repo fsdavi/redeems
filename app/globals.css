@@ -28,12 +28,12 @@ body {
   align-items: center;
   justify-content: center;
 
-  height: 100svh;
+  height: 100%;
   width: 100vw;
+  padding: 100px 0;
 
   font-family: var(--font-open-sans);
   color: var(--black);
-  background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

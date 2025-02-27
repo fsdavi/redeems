@@ -15,16 +15,14 @@ export default async function RootLayout({
   const redeemPagesData = await fetchRedeemPages();
 
   return (
-    <html lang="en">
-      <body className={openSans.variable}>
-        <AppRouterCacheProvider>
-          <StyledComponentsRegistry>
-            <RedeemPagesProvider redeemPages={redeemPagesData}>
-              <ThemeProvider theme={defautlMuiTheme}>{children}</ThemeProvider>
-            </RedeemPagesProvider>
-          </StyledComponentsRegistry>
-        </AppRouterCacheProvider>
-      </body>
+    <html lang="en" className={openSans.variable}>
+      <AppRouterCacheProvider>
+        <StyledComponentsRegistry>
+          <RedeemPagesProvider redeemPages={redeemPagesData}>
+            <ThemeProvider theme={defautlMuiTheme}>{children}</ThemeProvider>
+          </RedeemPagesProvider>
+        </StyledComponentsRegistry>
+      </AppRouterCacheProvider>
     </html>
   );
 }

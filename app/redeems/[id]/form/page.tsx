@@ -1,37 +1,18 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useItems } from "../contexts/CustomerItemsContext";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Wrapper, Title, ActionsWrapper } from "../page.styles";
-import { SectionTitle } from "./styles";
+import { Wrapper, Title, SectionTitle } from "./styles";
+import { ActionsWrapper } from "../styles";
 import Form from "next/form";
 import Button from "@/components/Button";
-import AddresseFormSection from "../components/AddresseeSection";
 import styled from "styled-components";
 import { createRedeem } from "./actions";
-import AddressFormSection from "../components/AdressSection";
-import ItemsSizesSection from "../components/ItemsSizesSection";
-
-const FORM_DEFAULT_VALUES = {
-  redeemer_name: "",
-  redeemer_email: "",
-  redeemer_document_number: "",
-  redeemer_zipcode: "",
-  redeemer_street: "",
-  redeemer_number: "",
-  redeemer_complement: "",
-  redeemer_neighborhood: "",
-  redeemer_city: "",
-  redeemer_state: "",
-  redeemer_country: "",
-  redeemer_phone: "",
-  extra_question_responses: [],
-  items: [],
-};
+import {
+  AddressFormSection,
+  ItemsSizesSection,
+  AddresseFormSection,
+} from "@/redeems/components";
+import { useRedeemForm } from "@/redeems/contexts/RedeemFormContext";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -40,12 +21,8 @@ const StyledForm = styled(Form)`
 `;
 
 export default function FormPage() {
-  const { selectedItems, pageRedeemId } = useItems();
+  const { selectedItems, pageId, form } = useRedeemForm();
   const router = useRouter();
-  const form = useForm<z.infer<typeof ADDRESSE_SCHEMA>>({
-    resolver: zodResolver(ADDRESSE_SCHEMA),
-    defaultValues: FORM_DEFAULT_VALUES,
-  });
 
   const itemsWithSizeSection = selectedItems.filter(
     (item) => item.sizes.length > 0
@@ -68,7 +45,7 @@ export default function FormPage() {
         <ActionsWrapper>
           <Button
             variant="outlined"
-            onClick={() => router.push(`/redeems?=${pageRedeemId}`)}
+            onClick={() => router.push(`/redeems/items/${pageId}`)}
           >
             Voltar
           </Button>

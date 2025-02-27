@@ -6,14 +6,14 @@ const DEFAULT_MUI_OPTIONS = {
   palette: {
     primary: {
       main: "#22007F",
-    },
+    }
   },
   typography: {
     fontFamily: "var(--font-open-sans)",
   }
 }
 
-const DEFAULT_MUI_BUTTON_STYLES = {
+export const DEFAULT_MUI_BUTTON_STYLES = {
   styleOverrides: {
     root: {
       borderRadius: "61px",
@@ -22,11 +22,13 @@ const DEFAULT_MUI_BUTTON_STYLES = {
       textTransform: "none",
       "&:hover": {
         boxShadow: "none",
+        backgroundColor: "#3100B6",
       },
       variants: [],
     },
     outlined: {
       borderColor: "#64748B",
+      color: "#64748B",
       "&:hover": {
         backgroundColor: " #F4F4F4",
       },
@@ -47,11 +49,8 @@ export const generateMuiTheme = (options?: ThemeOptions): Theme => {
     ...DEFAULT_MUI_OPTIONS,
     ...options,
     components: {
-      MuiButton: {
-        ...DEFAULT_MUI_BUTTON_STYLES,
-        ...options?.components?.MuiButton,
-      },
-    },
+      MuiButton: DEFAULT_MUI_BUTTON_STYLES,
+    }
   });
 }
 

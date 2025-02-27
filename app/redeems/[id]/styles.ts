@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { body, title } from '@/utils/typographies'
 
-export const Wrapper = styled.body`
+export const Wrapper = styled.main<{ $backgroundColor?: string }>`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -10,7 +10,14 @@ export const Wrapper = styled.body`
 
   padding: 40px 20px;
   align-self: flex-start;
-  height: 100%;
+
+  ${({ $backgroundColor }) => $backgroundColor && `
+    background-color: ${$backgroundColor};
+  `}
+  
+  @media (min-width: 768px) {
+    padding: 100px 140px;
+  }
 `
 
 export const Container = styled.div`
@@ -25,10 +32,9 @@ export const Container = styled.div`
 
   padding: 64px 20px 20px;
 
-  @media (min-width: 768px) {
-    padding: 100px 140px;
-  }
-`
+  width: calc(100svw - 80px);
+  max-width: 1000px;
+` 
 
 export const TextsWrapper = styled.div`
   display: flex;
@@ -47,9 +53,10 @@ export const Text = styled.p`
   ${body}
 `
 
-export const PagesWrapper = styled.div`
+export const ActionsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
   width: 100%;
 `
