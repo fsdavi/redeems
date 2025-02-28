@@ -61,6 +61,7 @@ describe('useDebounce hook', () => {
     const delay = 200;
     const { result, unmount } = renderHook(() => useDebounce(callback, delay));
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const debouncedFn: any = result.current;
     debouncedFn();
     expect(callback).not.toHaveBeenCalled();  

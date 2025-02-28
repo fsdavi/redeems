@@ -50,7 +50,8 @@ export default function FormPage() {
         toast("Resgate criado com sucesso!", { type: "success" });
         router.push(`/redeems/${pageId}/form/success`);
       })
-    } catch (_) {
+    } catch (error) {
+      console.log(error);
       toast("Erro ao criar resgate!", { type: "error" });
     } finally {
       setLoading(false)
