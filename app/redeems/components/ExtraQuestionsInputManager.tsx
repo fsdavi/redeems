@@ -2,7 +2,7 @@ import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
 import { Controller, FieldPath, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 import FormInput from "./FormInput";
-import { ExtraQuestion } from "@/types";
+import { ExtraQuestion } from "@/redeems/types";
 import SelectList from "@/components/Select";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";

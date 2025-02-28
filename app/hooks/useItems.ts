@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useRedeemPage } from "@/redeems/contexts/RedeemPageContext";
-import { Item } from "@/types";
+import { Item } from "@/redeems/types";
 
 type UseItemsReturn = {
   items: Item[];

@@ -7,7 +7,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { RedeemPage } from "@/types";
+import { RedeemPage } from "@/redeems/types";
 import fetchPageData from "@/lib/fetchPageData";
 
 type RedeemPageContextProps = {

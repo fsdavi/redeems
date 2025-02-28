@@ -1,7 +1,7 @@
 import { z } from "zod";
 import styled from "styled-components";
 import { Controller, FieldPath, UseFormReturn } from "react-hook-form";
-import { Item } from "@/types";
+import { Item } from "@/redeems/types";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
 
 import SelectList from "@/components/Select";

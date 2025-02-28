@@ -1,6 +1,6 @@
 "use client"
 import RedeemPagesContext from "@/contexts/RedeemPagesContext";
-import { RedeemPage } from "@/types";
+import { RedeemPage } from "@/redeems/types";
 
 type RedeemPagesProviderProps = {
   redeemPages: RedeemPage[];

@@ -1,4 +1,4 @@
-import { RedeemPage } from "@/types";
+import { RedeemPage } from "@/redeems/types";
 import { toast } from "react-toastify";
 
 type HandleData = (data: RedeemPage) => void;

@@ -1,4 +1,4 @@
-import { ExtraQuestion, Item } from "@/types";
+import { ExtraQuestion, Item } from "@/redeems/types";
 
 type RedeemFormInitialValues = {
   items: Item[];

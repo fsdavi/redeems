@@ -2,7 +2,7 @@ import { z } from "zod";
 import styled from "styled-components";
 import { FieldPath, UseFormReturn } from "react-hook-form";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
-import { ExtraQuestion } from "@/types";
+import { ExtraQuestion } from "@/redeems/types";
 import ExtraQuestionsInputManager from "./ExtraQuestionsInputManager";
 
 type ExtraQuestionsSectionProps = {

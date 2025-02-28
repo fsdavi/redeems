@@ -6,7 +6,7 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { Item } from "@/types";
+import { Item } from "@/redeems/types";
 import { useItems } from "@/hooks/useItems";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
