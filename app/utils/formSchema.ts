@@ -26,16 +26,24 @@ export const ADDRESSE_SCHEMA = z.object({
   }),
   redeemer_street: z.string({
     required_error: "Rua é um campo obrigatório",
+  }).min(1, {
+    message: "Rua é um campo obrigatório",
   }),
   redeemer_number: z.string({
     required_error: "Número é um campo obrigatório",
+  }).min(1, {
+    message: "Número é um campo obrigatório",
   }),
   redeemer_complement: z.string().nullable(),
   redeemer_neighborhood: z.string({
     required_error: "Bairro é um campo obrigatório",
+  }).min(1, {
+    message: "Bairro é um campo obrigatório",
   }),
   redeemer_city: z.string({
     required_error: "Cidade é um campo obrigatório",
+  }).min(1, {
+    message: "Cidade é um campo obrigatório",
   }),
   redeemer_state: z.string({
     required_error: "Estado é um campo obrigatório",
