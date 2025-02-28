@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useEffect, useMemo, useState } from "react";
 import { RedeemPageProvider } from "@/redeems/contexts/RedeemPageContext";
-import { Container, Wrapper } from "./styles";
+import { Container } from "./styles";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@mui/material";
 import { generateMuiTheme } from "@/theme";

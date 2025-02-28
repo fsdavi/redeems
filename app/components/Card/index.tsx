@@ -11,8 +11,8 @@ interface CardProps {
 const DEFAULT_CARD_IMAGE_OPTIONS = {
   width: 260,
   height: 260,
-  priority: true
-}
+  priority: true,
+};
 
 function CardComponent({ children }: CardProps) {
   return <CardContainer>{children}</CardContainer>;
@@ -24,21 +24,25 @@ function CardCircleCheckbox(props: CircleCheckboxProps) {
       <CircleCheckbox {...props} />
     </CheckboxWrapper>
   );
-};
+}
 
 function CardImage(props: ImageProps) {
-  return <Image {...DEFAULT_CARD_IMAGE_OPTIONS} {...props} />;
-};
+  return (
+    <Image
+      {...DEFAULT_CARD_IMAGE_OPTIONS}
+      {...props}
+    />
+  );
+}
 
 function CardTitle({ children }: { children: React.ReactNode }) {
   return <Title>{children}</Title>;
-};
-
+}
 
 const Card = Object.assign(CardComponent, {
   CircleCheckbox: CardCircleCheckbox,
   Image: CardImage,
   Title: CardTitle,
-})
+});
 
 export default Card;

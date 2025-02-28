@@ -1,5 +1,5 @@
 "use client";
-import { PageContainer, Text, TextsWrapper, Title, Wrapper } from "./page.styles";
+import { PageContainer, Text, TextsWrapper, Title } from "./page.styles";
 import { Suspense } from "react";
 import { useRedeemPage } from "../contexts/RedeemPageContext";
 import Image from "next/image";

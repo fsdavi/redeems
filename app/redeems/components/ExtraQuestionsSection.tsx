@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { FieldPath, UseFormReturn } from "react-hook-form";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
 import { ExtraQuestion } from "@/types";
-import { useState } from "react";
 import ExtraQuestionsInputManager from "./ExtraQuestionsInputManager";
 
 type ExtraQuestionsSectionProps = {

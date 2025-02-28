@@ -1,4 +1,5 @@
 "use client";
+
 import {
   PageContainer,
   Text,
@@ -8,7 +9,7 @@ import {
 import { Suspense } from "react";
 import { useRedeemPage } from "@/redeems/contexts/RedeemPageContext";
 import Image from "next/image";
-import { notFound, usePathname, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 
 const DEFAULT_LOGO_PROPS = {
   width: 190,

@@ -21,15 +21,17 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+
 export const Default: Story = {
   render: (args) => {
-    const [isChecked, setIsChecked] = useState(args.checked);
+    let isChecked = args.checked;
+
     return (
       <CircleCheckbox
         {...args}
         checked={isChecked}
         onChange={(e) => {
-          setIsChecked(e.target.checked);
+          isChecked = e.target.checked;
           args.onChange?.(e);
         }}
       />

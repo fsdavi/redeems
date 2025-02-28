@@ -52,7 +52,7 @@ export const RedeemFormProvider = ({
       items: selectedItems,
       extraQuestions: redeemPage?.extra_questions ?? [],
     }));
-  }, [selectedItems]);
+  }, [selectedItems, form, redeemPage]);
 
   return (
     <RedeemFormContext.Provider

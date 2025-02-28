@@ -13,7 +13,7 @@ type UseItemsReturn = {
 
 export const useItems = (): UseItemsReturn => {
   const { page, loading } = useRedeemPage();
-  const items = page?.items || [];
+  const items = useMemo(() => page?.items ?? [], [page]);
 
   const availableItems = items.filter((item) => item.optional);
   const [selectedItemsIds, setSelectedItemsIds] = useState<string[]>([]);

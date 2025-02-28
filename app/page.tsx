@@ -8,7 +8,6 @@ import PageCard from "@/components/PageCard";
 
 const DEFAULT_LOGO_PROPS = {
   src: "/default-logo.svg",
-  alt: "Lobby Tech",
   width: 189,
   height: 54,
 };
@@ -20,7 +19,7 @@ export default function Home() {
     <Suspense fallback={<div>Loading...</div>}>
       <Wrapper>
         <Container>
-          <Image {...DEFAULT_LOGO_PROPS} />
+          <Image {...DEFAULT_LOGO_PROPS} alt="Lobby tech"/>
 
           <TextsWrapper>
             <Title>Bem vindo aos resgates!</Title>

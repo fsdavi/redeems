@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from "react";
 import _ from "lodash";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useDebounce<T extends (...args: any[]) => any>(
   handler: T,
   wait: number,

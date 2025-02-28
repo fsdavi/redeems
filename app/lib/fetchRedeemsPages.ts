@@ -9,7 +9,7 @@ export async function fetchRedeemPages() {
     const data = await res.json();
 
     return data;
-  } catch(error) {
+  } catch() {
     throw new Error("Failed to fetch redeem pages");
   }
 }

@@ -23,8 +23,20 @@ function CpfCnpjTextField({
   }, [value]);
 
   return (
-    <InputMask mask={mask} value={value} onChange={onChange} onBlur={props.onBlur}>
-      <TextField label={label} variant="standard" fullWidth {...props}/>
+    <InputMask
+      mask={mask}
+      value={value}
+      onChange={onChange}
+      onBlur={props.onBlur}
+    >
+      <TextField
+        label={label}
+        variant="standard"
+        fullWidth
+        type={type}
+        disabled={disabled}
+        {...props}
+      />
     </InputMask>
   );
 }

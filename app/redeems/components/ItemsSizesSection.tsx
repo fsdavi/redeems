@@ -5,7 +5,6 @@ import { Item } from "@/types";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
 
 import SelectList from "@/components/Select";
-import { useEffect } from "react";
 
 type ItemsSizesSectionProps = {
   items: Item[];
@@ -35,7 +34,7 @@ function ItemsSizesSection({ items, form }: ItemsSizesSectionProps) {
             control={form.control}
             rules={{ required: "Selecione um tamanho" }}
             defaultValue={options[0]}
-            render={({ field, fieldState }) => (
+            render={({ field }) => (
               <SelectList
                 fullWidth
                 {...field}

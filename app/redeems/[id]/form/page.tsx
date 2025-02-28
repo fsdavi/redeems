@@ -4,7 +4,6 @@ import { z } from "zod";
 import Form from "next/form";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
-import { UseFormReturn } from "react-hook-form";
 import { createRedeem } from "./actions";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
 import { useRedeemForm } from "@/redeems/contexts/RedeemFormContext";
@@ -18,7 +17,7 @@ import {
   AddresseFormSection,
 } from "@/redeems/components";
 import ExtraQuestionsSection from "@/redeems/components/ExtraQuestionsSection";
-import { startTransition, Suspense, useState } from "react";
+import { startTransition, Suspense } from "react";
 
 type FormData = z.infer<typeof ADDRESSE_SCHEMA>;
 

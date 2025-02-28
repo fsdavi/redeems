@@ -10,7 +10,6 @@ const StyledFooter = styled.footer`
 
 const COPYRIGHT_IMAGE_OPTIONS = {
   src: "/Copyright.svg",
-  alt: "Copyright",
   width: 16,
   height: 16,
 };
@@ -18,7 +17,7 @@ const COPYRIGHT_IMAGE_OPTIONS = {
 export default function Footer() {
   return (
     <StyledFooter>
-      <Image {...COPYRIGHT_IMAGE_OPTIONS} /> <p>2025</p>•{" "}
+      <Image {...COPYRIGHT_IMAGE_OPTIONS} alt="Ícone Copyright" /> <p>2025</p>•{" "}
       <p>
         <b>Empresa X</b> em parceria com a <b>Lobby</b>
       </p>
