@@ -33,7 +33,6 @@ function ItemsSizesSection({ items, form }: ItemsSizesSectionProps) {
             name={fieldName}
             control={form.control}
             rules={{ required: "Selecione um tamanho" }}
-            defaultValue={options[0]}
             render={({ field }) => (
               <SelectList
                 fullWidth

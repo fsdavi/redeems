@@ -27,7 +27,7 @@ export const getRedeemsFormInitialValues = (values: RedeemFormInitialValues) => 
     })),
     items: items.map((item) => ({
       customer_product_id: item.customer_product_id,
-      size_name: ""
+      size_name: item.sizes[0]?.name ?? "",
     })),
   };
 }
