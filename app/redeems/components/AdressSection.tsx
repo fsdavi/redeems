@@ -45,7 +45,7 @@ function AddressFormSection({ form }: { form: Form }) {
       });
   };
 
-  const updateCEP = useDebounce(handleCEP, 500, true);
+  const updateCEP = useDebounce(handleCEP, 1000, true);
 
   useEffect(() => {
     updateCEP(cepValue);

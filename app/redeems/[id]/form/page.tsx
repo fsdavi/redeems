@@ -44,7 +44,7 @@ export default function FormPage() {
 
   const onSubmit = form.handleSubmit(async (data: FormData) => {
     if(!redeemPage || !pageId) return;
-    
+    setLoading(true)
     try {
       await createRedeem(data, pageId).then(() => {
         toast("Resgate criado com sucesso!", { type: "success" });
@@ -53,7 +53,7 @@ export default function FormPage() {
     } catch (_) {
       toast("Erro ao criar resgate!", { type: "error" });
     } finally {
-      setLoading
+      setLoading(false)
     }
   });
 
