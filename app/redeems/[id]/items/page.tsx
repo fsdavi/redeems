@@ -8,13 +8,13 @@ import Button from "@/components/Button";
 import ItemsSkeleton from "@/redeems/components/ItemsSkeleton";
 import { Wrapper, Title, ItemsWrapper } from "./page.styles";
 import { ActionsWrapper } from "../styles";
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 
 
 const createIsItemSelected = (selectedItemsIds: string[]) => (itemId: string) =>
   selectedItemsIds.includes(itemId);
 
-export default function RedeemsPage() {
+function RedeemsPage() {
   const { items, handleSelectItem, selectedItemsIds, loading, pageId } = useRedeemForm();
   const router = useRouter();
 
@@ -57,3 +57,5 @@ export default function RedeemsPage() {
     </Wrapper>
   );
 }
+
+export default memo(RedeemsPage);
