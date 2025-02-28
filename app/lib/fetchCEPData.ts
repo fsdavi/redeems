@@ -14,7 +14,11 @@ const fetchCEPData = async (cep: string): Promise<Data> => {
   
     return data;
   } catch(error) {
-    console.log(error)
+
+    if (error instanceof Error && error.message === "CEP inválido") {
+      throw error;
+    }
+    
     throw new Error("Failed to fetch CEP data");
   }
  
