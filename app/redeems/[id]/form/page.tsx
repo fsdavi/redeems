@@ -77,7 +77,7 @@ export default function FormPage() {
             >
               Voltar
             </Button>
-            <Button type="submit">Continuar</Button>
+            <Button type="submit" disabled={!form.formState.isValid}>Continuar</Button>
           </ActionsWrapper>
         </StyledForm>
       </Wrapper>
