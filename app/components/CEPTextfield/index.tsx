@@ -18,6 +18,7 @@ function CEPTextfield({
     <InputMask
       mask="99999-999"
       value={value}
+      disabled={disabled}
       onChange={onChange}
       onBlur={props.onBlur}
     >
@@ -25,7 +26,6 @@ function CEPTextfield({
         label={label}
         variant="standard"
         fullWidth
-        disabled={disabled}
         {...props}
       />
     </InputMask>

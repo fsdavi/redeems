@@ -29,19 +29,23 @@ function AddressFormSection({ form }: { form: Form }) {
   const handleCEP = async (cep: string) => {
     if (cep.length < 9) return;
 
-    try {
-      setLoadingCEPData(true);
-      const CEPData = await fetchCEPData(cep);
-
-      handleFormByCepData(form, CEPData);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoadingCEPData(false);
-    }
+    setLoadingCEPData(true);
+    fetchCEPData(cep)
+      .then((CEPData) => {
+        handleFormByCepData(form, CEPData);
+      })
+      .catch(() => {
+        setLoadingCEPData(false);
+        form.setError("redeemer_zipcode", {
+          message: "CEP inválido",
+        });
+      })
+      .finally(() => {
+        setLoadingCEPData(false);
+      });
   };
 
-  const updateCEP = useDebounce(handleCEP, 500, false);
+  const updateCEP = useDebounce(handleCEP, 500, true);
 
   useEffect(() => {
     updateCEP(cepValue);

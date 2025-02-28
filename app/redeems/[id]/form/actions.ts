@@ -1,4 +1,3 @@
-'use server'
 import { ADDRESSE_SCHEMA } from '@/utils/formSchema';
 import { z } from 'zod';
  
@@ -6,19 +5,22 @@ type FormData = z.infer<typeof ADDRESSE_SCHEMA>;
 
 export async function createRedeem(formData: FormData, redeemPageId: string) {
   try {
-    const parsedData = ADDRESSE_SCHEMA.parse(formData);
 
-    const response = await fetch(`/redeem_pages/${redeemPageId}/redeem`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(parsedData),
-    })
+    const response = await fetch(`/api/redeem/${redeemPageId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
 
-    return response.json();
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Request failed');
+    }
+
+    const data = await response.json()
+    return data;
   } catch (error) {
     console.error("Submission error:", error);
-    return { success: false, error: "Invalid form submission." };
+    return { message: "Erro ao criar resgate!" };
   }
 }

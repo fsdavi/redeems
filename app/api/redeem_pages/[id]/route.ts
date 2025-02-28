@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+// This API Route its used to hide the API Key from the client side
+
 export async function GET(
   _: Request,
   { params }: { params: Promise<{ id: string }> }
@@ -11,7 +13,7 @@ export async function GET(
       {
         cache: "force-cache",
         headers: {
-          Authorization: `Basic ${process.env.NEXT_PUBLIC_API_KEY}`,
+          Authorization: `Basic ${process.env.API_KEY}`,
         },
       }
     );

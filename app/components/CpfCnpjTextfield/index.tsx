@@ -26,6 +26,7 @@ function CpfCnpjTextField({
     <InputMask
       mask={mask}
       value={value}
+      disabled={disabled}
       onChange={onChange}
       onBlur={props.onBlur}
     >
@@ -34,7 +35,6 @@ function CpfCnpjTextField({
         variant="standard"
         fullWidth
         type={type}
-        disabled={disabled}
         {...props}
       />
     </InputMask>

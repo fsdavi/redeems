@@ -17,7 +17,9 @@ import {
   AddresseFormSection,
 } from "@/redeems/components";
 import ExtraQuestionsSection from "@/redeems/components/ExtraQuestionsSection";
-import { startTransition, Suspense } from "react";
+import { startTransition, Suspense, useState } from "react";
+import { toast } from "react-toastify";
+import { CircularProgress } from "@mui/material";
 
 type FormData = z.infer<typeof ADDRESSE_SCHEMA>;
 
@@ -32,20 +34,27 @@ export default function FormPage() {
   const { selectedItems, pageId, form } = useRedeemForm();
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
+
   const itemsWithSizeSection = selectedItems.filter(
     (item) => item.sizes.length > 0
   );
 
   const extraQuestions = redeemPage?.extra_questions ?? [];
 
-  const onSubmit = form.handleSubmit((data: FormData) => {
-    startTransition(async () => {
-      const response = await createRedeem(data, pageId);
-
-      if (response?.success) {
+  const onSubmit = form.handleSubmit(async (data: FormData) => {
+    if(!redeemPage || !pageId) return;
+    
+    try {
+      await createRedeem(data, pageId).then(() => {
+        toast("Resgate criado com sucesso!", { type: "success" });
         router.push(`/redeems/${pageId}/form/success`);
-      }
-    });
+      })
+    } catch (error) {
+      toast("Erro ao criar resgate!", { type: "error" });
+    } finally {
+      setLoading
+    }
   });
 
   return (
@@ -77,7 +86,7 @@ export default function FormPage() {
             >
               Voltar
             </Button>
-            <Button type="submit" disabled={!form.formState.isValid}>Continuar</Button>
+            <Button type="submit" disabled={!form.formState.isValid || loading}>{loading ? <CircularProgress size={14} /> : 'Continuar'}</Button>
           </ActionsWrapper>
         </StyledForm>
       </Wrapper>
