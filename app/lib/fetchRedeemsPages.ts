@@ -1,5 +1,7 @@
 import { toast } from "react-toastify";
 
+// This fetch we are using on client side just for development purposes
+
 export async function fetchRedeemPages() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/redeem_pages`, {

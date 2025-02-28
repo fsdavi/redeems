@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 
 type HandleData = (data: RedeemPage) => void;
 
+// this fetch are calling our API Route to get the data from the specified page 
+
 async function fetchPageData(handleData: HandleData, id: string) {
   try {
     const res = await fetch(`/api/redeem_pages/${id}`);

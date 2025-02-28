@@ -7,6 +7,7 @@ A [Next.js](https://nextjs.org/) application that demonstrates form submissions,
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
 - [Folder Structure](#folder-structure)
+- [Storybook](#storybook)
 - [Environment Variables](#environment-variables)
 - [Testing](#testing)
 
@@ -92,6 +93,14 @@ Access the app at http://localhost:3000 in your browser.
 * tests: (Optional) a separate folder for test files if you prefer a dedicated location.
 * tsconfig.json: TypeScript configuration.
 * jest.config.ts: Jest configuration for testing.
+
+## Storybook
+
+* To run the storybook
+
+```bash
+  pnpm run storybook
+```
 
 ## Environment Variables
 

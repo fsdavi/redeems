@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 
+interface Context {
+  params: {
+    pageId: string;
+  };
+}
+
 export async function POST (
   request: Request,
-  { params }: { params: { pageId: string } }
+  { params }: Context
 ) {
   try {
     const body = await request.json();
