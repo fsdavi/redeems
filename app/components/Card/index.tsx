@@ -11,6 +11,7 @@ interface CardProps {
 const DEFAULT_CARD_IMAGE_OPTIONS = {
   width: 260,
   height: 260,
+  priority: true
 }
 
 function CardComponent({ children }: CardProps) {

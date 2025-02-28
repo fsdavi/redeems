@@ -34,6 +34,7 @@ export const Container = styled.div`
 
   width: calc(100svw - 80px);
   max-width: 1000px;
+  min-height: 600px;
 ` 
 
 export const TextsWrapper = styled.div`
@@ -59,4 +60,5 @@ export const ActionsWrapper = styled.div`
   align-items: center;
   flex: 1;
   width: 100%;
+  gap: 40px;
 `

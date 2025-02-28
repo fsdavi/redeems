@@ -1,9 +1,12 @@
 import { z } from "zod"
+import { cpf, cnpj } from "cpf-cnpj-validator";
 
 export const ADDRESSE_SCHEMA = z.object({
   redeemer_name: z.string({
     required_error: "Nome é um campo obrigatório",
-  }).min(3),
+  }).min(3, {
+    message: "Nome inválido, deve ter no mínimo 3 caracteres",
+  }),
   redeemer_email: z.string(
     {
       required_error: "Email é um campo obrigatório",
@@ -13,12 +16,12 @@ export const ADDRESSE_SCHEMA = z.object({
   }),
   redeemer_document_number: z.string({
     required_error: "CPF/CNPJ é um campo obrigatório",
-  }).min(11, {
-    message: "CPF/CNPJ inválido",
-  }).max(14),
+  }).refine((value) => cpf.isValid(value) || cnpj.isValid(value), {
+    message: "CPF ou CNPJ inválido",
+  }),
   redeemer_zipcode: z.string({
     required_error: "CEP é um campo obrigatório",
-  }).min(8, {
+  }).min(9, {
     message: "CEP inválido",
   }),
   redeemer_street: z.string({
@@ -49,7 +52,7 @@ export const ADDRESSE_SCHEMA = z.object({
   ),
   extra_question_responses: z.array(
     z.object({ 
-      extra_question_id: z.string(),
+      extra_question_id: z.number(),
       answer: z.string(),
     })
   ).nullable(),

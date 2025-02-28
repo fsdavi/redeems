@@ -1,4 +1,4 @@
-// Will use a external API for this, but for now we will mock this
+// Will use a external API for this, but for now we will mock here
 
 export const states = [
   'SP', 'SE', 'CE', 'PE', 'RJ', 'MG', 'RS'

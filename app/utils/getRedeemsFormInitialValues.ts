@@ -1,6 +1,13 @@
-import { Item } from "@/types";
+import { ExtraQuestion, Item } from "@/types";
 
-export const getRedeemsFormInitialValues = (selectedItems: Item[]) => {
+type RedeemFormInitialValues = {
+  items: Item[];
+  extraQuestions: ExtraQuestion[];
+}
+
+export const getRedeemsFormInitialValues = (values: RedeemFormInitialValues) => {
+  const { items, extraQuestions } = values;
+
   return {
     redeemer_name: "",
     redeemer_email: "",
@@ -14,8 +21,11 @@ export const getRedeemsFormInitialValues = (selectedItems: Item[]) => {
     redeemer_state: "",
     redeemer_country: "",
     redeemer_phone: "",
-    extra_question_responses: [],
-    items: selectedItems.map((item) => ({
+    extra_question_responses: extraQuestions.map((question) => ({
+      extra_question_id: question.id,
+      answer: "",
+    })),
+    items: items.map((item) => ({
       customer_product_id: item.customer_product_id,
       size_name: ""
     })),

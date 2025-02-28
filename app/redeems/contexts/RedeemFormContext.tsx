@@ -4,7 +4,7 @@ import {
   createContext,
   useContext,
   ReactNode,
-  useMemo,
+  useEffect,
 } from "react";
 import { Item } from "@/types";
 import { useItems } from "../hooks/useItems";
@@ -13,6 +13,7 @@ import { z } from "zod";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { getRedeemsFormInitialValues } from "@/utils/getRedeemsFormInitialValues";
+import { useRedeemPage } from "./RedeemPageContext";
 
 type RedeemFormContextProps = {
   items: Item[];
@@ -22,7 +23,6 @@ type RedeemFormContextProps = {
   loading: boolean;
   pageId: string;
   form: UseFormReturn<z.infer<typeof ADDRESSE_SCHEMA>>;
-  handleItemsSize: (size: string, itemId: string) => void;
 };
 
 const RedeemFormContext = createContext<RedeemFormContextProps | undefined>(
@@ -34,22 +34,25 @@ export const RedeemFormProvider = ({
 }: {
   children: ReactNode;
 }) => {
+  const { page: redeemPage } = useRedeemPage();
   const { items, selectedItems, handleSelectItem, selectedItemsIds, loading, pageId } = useItems();
 
   const form = useForm<z.infer<typeof ADDRESSE_SCHEMA>>({
     resolver: zodResolver(ADDRESSE_SCHEMA),
-    defaultValues: useMemo(() => getRedeemsFormInitialValues(selectedItems), [selectedItems]),
+    defaultValues: getRedeemsFormInitialValues({
+      items: selectedItems,
+      extraQuestions: redeemPage?.extra_questions ?? [],
+    }),
+    mode: "onBlur",
+    reValidateMode: "onBlur",
   });
 
-  const handleItemsSize = (size: string, itemId: string) => {
-    const item = items.find((item) => item.customer_product_id === itemId);
-    if (!item) return;
-
-    const formItems = form.getValues("items");
-
-    form.setValue("items", formItems.map((item) => 
-      (item.customer_product_id === itemId ? { ...item, size_name: size } : item)));
-  }
+  useEffect(() => {
+    form.reset(getRedeemsFormInitialValues({
+      items: selectedItems,
+      extraQuestions: redeemPage?.extra_questions ?? [],
+    }));
+  }, [selectedItems]);
 
   return (
     <RedeemFormContext.Provider
@@ -60,8 +63,7 @@ export const RedeemFormProvider = ({
         selectedItemsIds,
         loading,
         pageId,
-        form,
-        handleItemsSize
+        form
       }}
     >
       {children}
