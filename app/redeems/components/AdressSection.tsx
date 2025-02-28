@@ -1,82 +1,117 @@
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";
-import { TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import { Controller, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 import { Container, Wrapper } from "./styles";
 import SelectList from "@/components/Select";
 import { countries, states } from "@/utils/constants";
+import CEPTextfield from "@/components/CEPTextfield";
+import { Data as CEPDataType, fetchCEPData } from "@/lib/fetchCEPData";
+import { useEffect, useState } from "react";
+import useDebounce from "../hooks/useDebounce";
+import FormInput from "./FormInput";
 
-function AddressFormSection({
-  form,
-}: {
-  form: UseFormReturn<z.infer<typeof ADDRESSE_SCHEMA>>;
-}) {
-  const {
-    register,
-    formState: { errors },
-    control,
-  } = form;
+type Form = UseFormReturn<z.infer<typeof ADDRESSE_SCHEMA>>;
+
+const handleFormByCepData = (form: Form, CEPData: CEPDataType) => {
+  form.setValue("redeemer_street", CEPData.logradouro);
+  form.setValue("redeemer_neighborhood", CEPData.bairro);
+  form.setValue("redeemer_city", CEPData.localidade);
+  form.setValue("redeemer_state", CEPData.uf);
+  form.setValue("redeemer_country", "Brasil");
+};
+
+function AddressFormSection({ form }: { form: Form }) {
+  const [loadingCEPData, setLoadingCEPData] = useState(false);
+  const [cepValue, setCepValue] = useState("");
+
+  const { control } = form;
+
+  const handleCEP = async (cep: string) => {
+    if (cep.length < 9) return;
+
+    try {
+      setLoadingCEPData(true);
+      const CEPData = await fetchCEPData(cep);
+
+      handleFormByCepData(form, CEPData);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoadingCEPData(false);
+    }
+  };
+
+  const updateCEP = useDebounce(handleCEP, 500, false);
+
+  useEffect(() => {
+    updateCEP(cepValue);
+  }, [cepValue]);
 
   return (
     <Wrapper>
       <Container>
-        <TextField
-          label="CEP"
-          required
-          variant="standard"
-          fullWidth
-          {...register("redeemer_zipcode")}
-          error={Boolean(errors.redeemer_zipcode)}
-          helperText={errors.redeemer_zipcode?.message}
+        <Controller
+          control={control}
+          name="redeemer_zipcode"
+          render={({ field, fieldState: { error } }) => (
+            <CEPTextfield
+              label="CEP"
+              required
+              variant="standard"
+              fullWidth
+              value={field.value}
+              onChange={(e) => {
+                setCepValue(e.target.value);
+                field.onChange(e);
+              }}
+              onBlur={field.onBlur}
+              error={Boolean(error)}
+              helperText={error?.message}
+            />
+          )}
         />
-        <TextField
+
+        <FormInput
+          control={control}
+          name="redeemer_street"
           label="Rua"
           required
-          variant="standard"
-          fullWidth
-          {...register("redeemer_street")}
-          error={Boolean(errors.redeemer_street)}
-          helperText={errors.redeemer_street?.message}
+          loading={loadingCEPData}
         />
       </Container>
       <Container>
         <Container>
-          <TextField
+          <FormInput
+            control={control}
+            name="redeemer_number"
             label="Número"
             required
-            variant="standard"
-            fullWidth
             type="number"
-            {...register("redeemer_number")}
-            error={Boolean(errors.redeemer_number)}
-            helperText={errors.redeemer_number?.message}
-          />{" "}
-          <TextField
+          />
+
+          <FormInput
+            control={control}
+            name="redeemer_complement"
             label="Complemento"
             variant="standard"
-            fullWidth
-            {...register("redeemer_complement")}
           />
         </Container>
-        <TextField
+        <FormInput
+          control={control}
+          name="redeemer_neighborhood"
           label="Bairro"
           required
-          variant="standard"
-          fullWidth
-          {...register("redeemer_neighborhood")}
-          error={Boolean(errors.redeemer_neighborhood)}
-          helperText={errors.redeemer_neighborhood?.message}
+          loading={loadingCEPData}
         />
       </Container>
       <Container>
-        <TextField
+        <FormInput
+          control={control}
+          name="redeemer_city"
           label="Cidade"
           required
-          variant="standard"
-          fullWidth
-          {...register("redeemer_city")}
-          error={Boolean(errors.redeemer_city)}
-          helperText={errors.redeemer_city?.message}
+          loading={loadingCEPData}
         />
         <Container>
           <Controller
