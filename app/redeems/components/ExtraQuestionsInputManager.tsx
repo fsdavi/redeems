@@ -10,8 +10,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 
-type InputsTypes = "text" | "select_one" | "date" | "text_area";
-
 type ExtraQuestionsInputManagerProps = {
   question: ExtraQuestion;
   fieldName: FieldPath<z.infer<typeof ADDRESSE_SCHEMA>>;
@@ -83,6 +81,8 @@ function ExtraQuestionsInputManager(props: ExtraQuestionsInputManagerProps) {
           />
         </LocalizationProvider>
       );
+    default:
+      return null;
   }
 }
 

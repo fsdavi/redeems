@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import CircleCheckbox from ".";
-import { useState } from "react";
 
 const meta = {
   component: CircleCheckbox,

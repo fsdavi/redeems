@@ -8,7 +8,8 @@ async function fetchPageData(handleData: HandleData, id: string) {
     const data: RedeemPage = await res.json();
  
     if(data) handleData(data);
-  } catch () {
+  } catch(e) {
+    console.log(e)
     throw new Error("Failed to fetch page data");
   }
 }
