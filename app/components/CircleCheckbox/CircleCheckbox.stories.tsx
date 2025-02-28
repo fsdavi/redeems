@@ -1,8 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 
 import CircleCheckbox from ".";
+import { useState } from "react";
 
 const meta = {
+  title: "Components/CircleCheckbox",
   component: CircleCheckbox,
   argTypes: {
     checked: {
@@ -18,26 +20,15 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+const Template: StoryFn = (args) => {
+  const [checked, setChecked] = useState(args.checked);
 
+  return (
+    <CircleCheckbox
+      checked={checked}
+      onChange={(e) => setChecked(e.target.checked)}
+    />
+  );
+} 
 
-export const Default: Story = {
-  render: (args) => {
-    let isChecked = args.checked;
-
-    return (
-      <CircleCheckbox
-        {...args}
-        checked={isChecked}
-        onChange={(e) => {
-          isChecked = e.target.checked;
-          args.onChange?.(e);
-        }}
-      />
-    );
-  },
-  args: {
-    checked: true,
-    onChange: () => {},
-  },
-};
+export const Default = Template.bind({});

@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 export type Data = Record<string, string>;
 
 const fetchCEPData = async (cep: string): Promise<Data> => {

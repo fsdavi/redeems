@@ -7,7 +7,7 @@ import {
   useEffect,
 } from "react";
 import { Item } from "@/types";
-import { useItems } from "../hooks/useItems";
+import { useItems } from "@/hooks/useItems";
 import { useForm, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 import { ADDRESSE_SCHEMA } from "@/utils/formSchema";

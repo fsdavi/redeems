@@ -17,7 +17,7 @@ import {
   AddresseFormSection,
 } from "@/redeems/components";
 import ExtraQuestionsSection from "@/redeems/components/ExtraQuestionsSection";
-import { startTransition, Suspense, useState } from "react";
+import {  Suspense, useState } from "react";
 import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
 
@@ -50,7 +50,7 @@ export default function FormPage() {
         toast("Resgate criado com sucesso!", { type: "success" });
         router.push(`/redeems/${pageId}/form/success`);
       })
-    } catch (error) {
+    } catch (_) {
       toast("Erro ao criar resgate!", { type: "error" });
     } finally {
       setLoading

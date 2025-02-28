@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { Meta, StoryFn } from "@storybook/react";
 import Card from ".";
 
-export default {
+const meta = {
   title: "Components/Card",
   component: Card,
   args: {
@@ -23,6 +23,8 @@ export default {
     layout: "centered",
   },
 } as Meta;
+
+export default meta;
 
 type CardStoryProps = {
   src: string;

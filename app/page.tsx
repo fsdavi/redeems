@@ -3,7 +3,7 @@ import { Container, PagesWrapper, Text, TextsWrapper, Title, Wrapper } from "./p
 import { Suspense } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
-import { useRedeemPages } from "./hooks/useRedeemPages";
+import { useRedeemPages } from "@/hooks/useRedeemPages";
 import PageCard from "@/components/PageCard";
 
 const DEFAULT_LOGO_PROPS = {

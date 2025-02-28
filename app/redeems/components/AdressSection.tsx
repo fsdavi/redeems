@@ -7,7 +7,7 @@ import { countries, states } from "@/utils/constants";
 import CEPTextfield from "@/components/CEPTextfield";
 import { Data as CEPDataType, fetchCEPData } from "@/lib/fetchCEPData";
 import { useEffect, useState } from "react";
-import useDebounce from "../hooks/useDebounce";
+import useDebounce from "@/hooks/useDebounce";
 import FormInput from "./FormInput";
 
 type Form = UseFormReturn<z.infer<typeof ADDRESSE_SCHEMA>>;

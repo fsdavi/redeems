@@ -1,7 +1,7 @@
 import { ArrowForwardIosOutlined as ArrowIcon} from '@mui/icons-material';
 import { Card, Title } from './styles';
 
-type PageCardProps = {
+export type PageCardProps = {
   title: string;
   id: string;
   status: string;
