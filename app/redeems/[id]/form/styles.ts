@@ -25,10 +25,5 @@ export const Title = styled.h1`
 export const ItemsWrapper = styled.div`
   display: grid;
   gap: 20px;
-  grid-template-columns: 1fr;
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-    flex-direction: row;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(100%, 398px));
 `

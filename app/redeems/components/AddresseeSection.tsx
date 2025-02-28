@@ -4,31 +4,21 @@ import { TextField } from "@mui/material";
 import { Controller, UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 import { Container, Wrapper } from "./styles";
+import FormInput from "./FormInput";
 
 function AddresseFormSection({
   form,
 }: {
   form: UseFormReturn<z.infer<typeof ADDRESSE_SCHEMA>>;
 }) {
-  const {
-    register,
-    formState: { errors },
-    control
-  } = form;
+  const { control } = form;
 
   return (
     <Wrapper>
-      <TextField
-        label="Nome completo"
-        required
-        variant="standard"
-        fullWidth
-        {...register("redeemer_name")}
-        error={Boolean(errors.redeemer_name)}
-        helperText={errors.redeemer_name?.message}
-      />
+      <FormInput control={control} name="redeemer_name" label="Nome completo" />
+
       <Container>
-      <Controller
+        <Controller
           control={control}
           name="redeemer_document_number"
           render={({ field, fieldState: { error } }) => (
@@ -43,15 +33,7 @@ function AddresseFormSection({
             />
           )}
         />
-        <TextField
-          label="E-mail"
-          required
-          variant="standard"
-          fullWidth
-          {...register("redeemer_email")}
-          error={Boolean(errors.redeemer_email)}
-          helperText={errors.redeemer_email?.message}
-        />
+        <FormInput control={control} name="redeemer_email" label="E-mail" />
       </Container>
     </Wrapper>
   );
